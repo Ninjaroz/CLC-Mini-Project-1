@@ -2,14 +2,14 @@ import java.beans.*;
 
 /**
  * @author Gary
- * This is an example of the java.beans API using the BeanInfo object to obtain the properties of TestBean
- * 
+ * This is an example of the java.beans API using some of the methods of Introspector
+ * Code reference: https://docs.oracle.com/javase/7/docs/api/java/beans/Introspector.html
  */
 public class JavaBeanAPITest{
 	public static void main(String[] argv) throws Exception {
 			    // creates a java.beans introspector object , Added stopClass arg to remove class name
 			    BeanInfo testBeanInfo = Introspector.getBeanInfo(TestBean.class, Object.class);
-			    
+			   
 			    // creates an array containing the editable properties of the bean
 			    PropertyDescriptor[] propDescriptors = testBeanInfo.getPropertyDescriptors();
 
@@ -20,6 +20,8 @@ public class JavaBeanAPITest{
 			        //makes the Introspector re-analyze existing Class objects
 			        Introspector.flushCaches();
 			      }
+			      // Converts the first character in the string from upper case to lower case
+			      System.out.println(Introspector.decapitalize("TestSize"));
 		 }
 //Test bean for the Property Descriptor test			   
 class TestBean implements java.io.Serializable {
